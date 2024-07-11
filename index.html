@@ -1,470 +1,105 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  BIENVENIDO
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Peso en Otros Planetas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1c3d5d, #0c1f2c);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+        input::placeholder, select {
+            color: #cccccc;
+        }
+        button {
+            background-color: #ffd700;
+            color: #1c3d5d;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ffed4a;
+        }
+        #resultado {
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    </style>
 </head>
-<title>Tu peso en otro planeta</title>
 <body>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
-  <form action="" class="form-box" animated lightSpeedInLeft>
-    <h1 class="form-title">Ingresar</h1>
-    <input type="text" placeholder="Username">
-    <input type="password" placeholder="Password">
-
-    <button type="submit">
-      Login
-    </button>
-  </form>
-
-        <h2>Planetas</h2>
-      </div>
+    <div class="container">
+        <h1>Tu Peso en Otros Planetas</h1>
+        <input type="text" id="nombre" placeholder="Tu nombre" required>
+        <input type="number" id="peso" placeholder="Tu peso en kg" required>
+        <select id="planeta">
+            <option value="">Selecciona un planeta</option>
+            <option value="mercurio">Mercurio</option>
+            <option value="venus">Venus</option>
+            <option value="marte">Marte</option>
+            <option value="jupiter">Júpiter</option>
+            <option value="saturno">Saturno</option>
+            <option value="urano">Urano</option>
+            <option value="neptuno">Neptuno</option>
+        </select>
+        <button onclick="calcularPeso()">Calcular</button>
+        <div id="resultado"></div>
     </div>
-  </header>
 
-  <form class="form"
-      <input type="text" required>
-      <label class="lbl-nombre">
-        <span class="text-nomb">
-      </label>
-  </form>
-<a href="https://www.facebook.com/Las-cositas-del-Chaparro-110479004117832/" class="btn-neon">
-      <span id="span1"></span>
-      <span id="span2"></span>
-      <span id="span3"></span>
-      <span id="span4"></span>
-  <div class="item uno">Hecho por Mauricio Leyva, © 2021</div>
-  <div class="item dos"> NOTA: si quieres un paso personalizado con tu nombre pulsa aqui </div>
-  <div class"esquinas"></div>
-  <div class="loader"></div>
+    <script>
+        function calcularPeso() {
+            const nombre = document.getElementById('nombre').value;
+            const peso = parseFloat(document.getElementById('peso').value);
+            const planeta = document.getElementById('planeta').value;
+            const resultado = document.getElementById('resultado');
 
-  <div id="sidebar" class="active">
-    <div class="toggle-btn">
-      <span>&#9776;</span>
-    </div>
-    <ul>
-      <li>
-        <img src="logo.jpg" alt="Logotipo" class="logo">
-      </li>
-      <li>Home</li>
-      <li>About</li>
-      <li>Contact</li>
-      <li>Facebook</li>
-    </ul>
-  </div>
-<h3>¿Porque en otro planeta pesas distinto?</h3>
+            if (!nombre || !peso || !planeta) {
+                resultado.textContent = 'Por favor, completa todos los campos.';
+                return;
+            }
 
+            const gravedades = {
+                mercurio: 0.38,
+                venus: 0.91,
+                marte: 0.38,
+                jupiter: 2.34,
+                saturno: 0.93,
+                urano: 0.92,
+                neptuno: 1.12
+            };
 
-  <p>Esto es porque los planetas tienen distintos pesos y, por tanto, la fuerza de la gravedad es distinta en cada uno de ellos. Por ejemplo, si pesas 100 libras (45 kilos) en la Tierra, pesarías solo 38 libras (17 kilos) en Mercurio.</p>
-
-<img src="peso.png" width="400" height="200"
-
+            const pesoEnPlaneta = (peso * gravedades[planeta]).toFixed(2);
+            resultado.innerHTML = `¡Hola ${nombre}!<br>Tu peso en ${planeta.charAt(0).toUpperCase() + planeta.slice(1)} sería de ${pesoEnPlaneta} kg.`;
+        }
+    </script>
 </body>
-
-<style>
-body {
-  background-color: #ffa500;
-}
-
-.form-box{
-  width: 300px;
-  padding: 40px;
-  background: #191919;
-  text-align: center;
-}
-.form-title{
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.form-box input[type="text"],
-.form-box input[type="password"],
-.form-box button[type="submit"]{
-  border: 0;
-  background: none;
-  display: block;
-  margin: 20px auto;
-  padding: 14px 10px;
-  text-align: center;
-  border: 2px solid #3742fa;
-  width: 200px;
-  outline: none;
-  color: white;
-  border-radius: 24px;
-  transition: 0.25s;
-}
-.form-box input[type="text"]:focus,
-.form-box input[type="password"]:focus{
-  width: 280px;
-  border-color: #ffff;
-}
-.form-box button[type="submit"]{
-  border: 0;
-  background: #5352ed;
-  cursor: pointer;
-  border: 2px solid #3742fa;
-}
-.form-box button[type="submit"]:hover{
-  background: none;
-}
-
-.header{
-  width: 100%;
-  height: 70px;
-  background: #141414;
-}
-.container{
-  width: 100%;
-  max-width: 1000px;
-  margin: auto;
-}
-.menu{
-  line-height: 70px;
-  position: relative;
-}
-.menu a{
-  display: inline-block;
-  text-decoration: none;
-  color: #fff;
-  padding: 26px 15px;
-  line-height: normal;
-  transition: all 300ms ease;
-}
-.menu a:hover{
-  background: #1389e0;
-}
-.desplegar{
-  background: none;
-  border: none;
-  padding: 26px 15px;
-  cursor: pointer;
-  outline: 0px;
-}
-.desplegar:hover{
-  background: #1389e0;
-}
-.desplegar span{
-  color: #fff;
-  font-size: 16px;
-}
-.mega-menu{
-  width: 100%
-  position: absolute;
-  background: #fff;
-  top: 90; left: 0;
-  max-width: 600px;
-  cursor: default;
-  transition: all 300ms ease-out;
-
-  opacity: 0;
-  visibility: hidden;
-}
-.desplegar:hover .mega-menu{
-  opacity: 1;
-  visibility: visible;
-  top: 70px;
-}
-.mega-menu h2{
-  padding: 20px;
-  background: #1389e0
-  color: #fff;
-}
-.categorias{
-  display: flex;
-}
-.lista{
-  width: 100%;
-  margin: 5px;
-  padding: 10px;
-}
-.lista h3{
-  padding: 10px;
-}
-.categorias a{
-  display: block;
-  color: #434343
-  padding: 15px 10px;
-  font-size: 15px;
-}
-.categorias a:hover{
-  background: none;
-  color: #1389e0
-}
-
-.loader{
-  width: 70px;
-  height: 70px;
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #3498db;
-  border-radius: 50%;
-  animation: spin 1.5s linear infinite;
-}
-@@keyframes spin {
-  0%{
-    transform: rotate(0deg);
-  }
-  100%{
-    transform: rotate(360deg);
-  }
-}
-
-.texto3d{
-  font-size: 3.5em;
-  color: #eee;
-  text-shadow: 2px 2px #000, 1px 1px #142533, 2px 2px #142533, 3px 3px #142533,  4px 4px #142533, 5px 5px #142533,  6px 6px #142533,  7px 7px #142533
-  transform: rotate(-6deg);
-}
-
-.esquinas {
-  width: 500px;
-  height: 300px;
-  box-shadow: 0 0 0 8px #111619 inset, 0 0 0 10px #ff33ff inset;
-  background: url(http://www.freewallpaperfullhd.com/wp-content/uploads/2015/01/Girl-Wallpaper-HD-1680x1050.jpg);
-  background-size: cover;
-  margin: 2em auto;
-  position: relative;
-}
-
-.esquinas:after {
-  content: "";
-  width: 508px;
-  height: 308px;
-  position: absolute;
-  z-index: -1;
-  top: -4px;
-  left: -4px;
-  background-image: -webkit-linear-gradient(left, transparent 30px, #111619 30px, #111619 478px, transparent 478px), -webkit-linear-gradient(#ff33ff 30px, transparent 30px, transparent 278px, #ff33ff 278px);
-  background-image: linear-gradient(left, transparent 30px, #111619 30px, #111619 478px, transparent 478px), linear-gradient(#ff33ff 30px, transparent 30px, transparent 278px, #ff33ff 278px);
-}
-
-.btn-neon{
-  position: relative;
-  display: inline-block;
-  padding: 15px 30px;
-  color:  #fff;
-  letter-spacing: 4px;
-  font-size: 24;
-  text-decoration: none;
-  overflow: hidden;
-  transition: 0.2s;
-}
-.btn-neon:hover{
-  background: #a945c7;
-  box-shadow: 0 0 10px #a945c7, 0 0 40px #a945c7, 0 0 80px #a945c7;
-  transition-delay: 1s;
-}
-.btn-neon span{
-  position: absolute;
-  display: block;
-}
-#span1{
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg,transparent,#a945c7);
-}
-.btn-neon:hover #span1{
-  left: 100%;
-  transition: 1s;
-}
-#span3{
-  button: 0;
-  right: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(270deg,transparent,#a945c7);
-}
-.btn-neon:hover #span3{
-  right: 100%;
-  transition: 1s;
-  transition-delay: 0.5s;
-}
-#span2{
-  top: -100%;
-  right: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(180deg,transparent,#a945c7);
-}
-.btn-neon:hover #span2{
-  top: 100%;
-  transition: 1s;
-  transition-delay: 0.25s;
-}
-#span4{
-  button: -100%;
-  left: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(360deg,transparent,#a945c7);
-}
-.btn-neon:hover #span4{
-  buttom: 100%;
-  transition: 1s;
-  transition-delay: 0.75s;
-}
-
-h1 {
-  color: #FE0000;
-}
-h2{
-    text-align: center;
-}
-h3{
-    text-align: center;
-}
-
-.container {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 2em;
-}
-
-.item {
-  background: darken(seagreen, 15);
-  line-height: 4;
-  padding: 0 2em;
-  margin: 1.5em;
-  color: #fff
-  position: relative;
-}
-
-.item:before {
-  content: "";
-  display: block;
-  width: 0;
-  height: 3px;
-  background: #fff;
-  bottom: 0;
-  transition: all 0.3s;
-}
-
-.item:hover:before {
-  width: 100%;
-}
-
-.uno:before {
-  left: 0;
-}
-
-.dos:before {
-  right: 0;
-}
-
-.tres:before {
-  left: 50%;
-}
-
-.tres:hover:before {
-  left: 0;
-}
-
-div {
-  border: 1px solid black;
-  margin-top: 100px;
-  margin-bottom: 100px;
-  margin-right: 150px;
-  margin-left: 80px;
-  background-color: #00D1EC;
-  text-align: center;
-}
-
-p {
-  font-family: verdana;
-  font-size: 20px;
-  text-align: center;
-  box-shadow: 0px 10 lightblue inset,
-              100px 0 yellow inset,
-              200px 0 red inset,
-              300px 0 blue inset,
-              400px 0 lime inset,
-              500px 0 orange inset;
-}
-
-*{
-  margin: 0;
-  padding: 0;
-}
-
-#sidebar{
-  left: -500px;
-  transition: all 500ms linear;
-}
-
-#sidebar.active{
-  left: 0;
-}
-
-#sidebar ul li{
-  color: rgba(230, 230, 230, .9);
-  text-align: center;
-  padding: 15px 10px;
-  list-style: none;
-  border-bottom: 1px solid rgba(100, 100, 100, 0.3);
-}
-
-.logo{
-  border-radius: 50%;
-  display: block;
-  margin: 0 auto;
-}
-
-#sidebar .toggle-btn{
-  position: absolute;
-  left: 130px;
-  up: 20px;
-  cursor: pointer;
-}
-
-#sidebar .toggle-btn span{
-  display: block;
-  width: 40px;
-  text-align: center;
-  font-size: 30px;
-  border: 1px solid #000;
-}
-
-</style>
-<h1>Tu peso en otro planeta</h1>
-<font size=4>En la tierra pesas distinto que en marte o jupiter</font>
-<font color="Blue">Calculando...</font>
-<script>
-var apellido = prompt("Cual es tu nombre?");
-var usuario = prompt("Cual es tu peso?");
-var planeta = prompt("Elige tu planeta\n1 es marte, 2 es jupiter, 3 es venus");
-var peso = parseFloat(usuario);
-var g_tierra = 9.8;
-var g_marte = 3.7;
-var g_jupiter = 24.8;
-var peso_final;
-var nombre;
-if (planeta == 1)
-{
-  peso_final = peso * g_marte / g_tierra;
-  nombre = "Marte";
-}
-else if(planeta == 2)
-{
-  peso_final = peso * g_jupiter / g_tierra
-  nombre = "jupiter";
-}
-else
-{
-  peso_final = 1000000;
-  nombre = "tu planeta";
-}
-peso_final = (peso_final);
-  document.write("Hola " + apellido + " tu peso en " + nombre + " es <strong>" + peso_final + " kilos </strong>");
-  alert("Bienvenido al calculador de peso");
-
-
-const btnToggle = document.querySelector(".toggle-btn");
-btnToggle.addEventListener("click", function () {
-  document.getElementById("sidebar").classList.toggle("active");
-});
-</script>
-<img src="planetas.jpg" width="900"
-     height="400">
 </html>
